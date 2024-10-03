@@ -3,13 +3,14 @@ from circleshape import *
 from constants import *
 
 class Player(CircleShape):
-    def __init__(self, x, y,):
+    def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
+        self.image = pygame.Surface((PLAYER_RADIUS*2, PLAYER_RADIUS*2), pygame.SRCALPHA)
+        self.rect = self.image.get_rect(center=(x, y))
 
     def draw(self, Screen):
         pygame.draw.polygon(Screen, "white", self.triangle(), width=2)
-        pass
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
@@ -30,6 +31,7 @@ class Player(CircleShape):
             self.move(dt)
         if keys[pygame.K_s]:
             self.move(-dt)
+        self.rect.center = self.position
 
         # in the player class
     def triangle(self):
