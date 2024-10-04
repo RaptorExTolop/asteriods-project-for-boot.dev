@@ -28,9 +28,14 @@ class Player(CircleShape):
         if keys[pygame.K_d]:
             self.rotate(dt)
         if keys[pygame.K_w]:
+            if keys[pygame.K_LSHIFT]:
+                self.move(dt)
             self.move(dt)
         if keys[pygame.K_s]:
+            if keys[pygame.K_LSHIFT]:
+                self.move(-dt)
             self.move(-dt)
+        
         self.rect.center = self.position
 
         # in the player class
