@@ -10,7 +10,7 @@ class Player(CircleShape):
         self.rect = self.image.get_rect(center=(x, y))
 
     def draw(self, Screen):
-        pygame.draw.polygon(Screen, "white", self.triangle(), width=2)
+        pygame.draw.polygon(Screen, "white", self.triangle(), width=3)
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
