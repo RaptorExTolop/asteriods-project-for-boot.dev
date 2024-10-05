@@ -28,7 +28,7 @@ def main():
 
     # asteroid field colourful 4 letter words
     AsteroidField.containers = (updatable,)
-    asteriod_field = AsteroidField()
+    #asteriod_field = AsteroidField()
     
 
     # screen size
