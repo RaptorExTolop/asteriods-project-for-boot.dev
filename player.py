@@ -10,6 +10,7 @@ class Player(CircleShape):
         self.image = pygame.Surface((PLAYER_RADIUS*2, PLAYER_RADIUS*2), pygame.SRCALPHA)
         self.rect = self.image.get_rect(center=(x, y))
         self.shot_groups = shot_groups
+        self.shoot_cooldown = 0
 
     def draw(self, Screen):
         pygame.draw.polygon(Screen, "white", self.triangle(), width=3)
@@ -26,10 +27,13 @@ class Player(CircleShape):
         new_shot = Shot(self.position.x, self.position.y, velocity * PLAYER_SHOOT_SPEED)
         for group in self.shot_groups:
             group.add(new_shot)
+        self.shoot_cooldown = PLAYER_SHOOT_TIMER
 
     
     def update(self, dt):
         keys = pygame.key.get_pressed()
+
+        self.shoot_cooldown -= dt
 
         if keys[pygame.K_a]:
             self.rotate(-dt)
@@ -43,7 +47,7 @@ class Player(CircleShape):
             if keys[pygame.K_LSHIFT]:
                 self.move(-dt)
             self.move(-dt)
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_SPACE] and self.shoot_cooldown <= 0:
             self.shoot()
         
         self.rect.center = self.position
