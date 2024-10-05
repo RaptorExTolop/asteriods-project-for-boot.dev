@@ -59,7 +59,7 @@ def main():
                 sys.exit()
             for bullet in shots:
                 if bullet.collide(asteroid):
-                    asteroid.kill()
+                    asteroid.split((asteroids, updatable, drawable))
                     bullet.kill()
 
 
