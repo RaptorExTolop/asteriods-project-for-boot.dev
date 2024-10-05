@@ -13,14 +13,15 @@ def main():
     game_time = pygame.time.Clock()
     dt = 0
 
-    # creates 2 groups to make updating and drawing easier
+    # creates 4 groups to make updating and drawing easier
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
 
     # adds player to the drawable and update group
     Player.containers = (updatable, drawable)
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, (shots, drawable, updatable))
 
     # asteriods container bullshit
     Asteroid.containers = (asteroids, updatable, drawable)
@@ -28,7 +29,7 @@ def main():
     # asteroid field colourful 4 letter words
     AsteroidField.containers = (updatable,)
     asteriod_field = AsteroidField()
-
+    
 
     # screen size
     print("Starting asteroids!")
